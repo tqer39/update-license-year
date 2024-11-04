@@ -50,10 +50,7 @@ jobs:
 
 ## Contributing
 
-1. Fork the repository.
-2. Create a new branch.
-3. Make changes and commit.
-4. Create a pull request.
+If you find any issues or have improvements, please create an Issue or submit a Pull Request.
 
 ## License
 
