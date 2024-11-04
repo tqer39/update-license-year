@@ -1,5 +1,5 @@
 <p align="center">
-  <a href=">
+  <a href="">
     <img src="./docs/header.jpg" alt="header" width="100%">
   </a>
 </p>
