@@ -53,7 +53,7 @@ jobs:
         run: |
           git push -fu origin "$branch_name"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.app_token.outputs.token }}
 
       - name: Create Pull Request
         env:
