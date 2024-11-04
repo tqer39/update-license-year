@@ -11,8 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:
-      contents: write
-      pull-requests: write
+      contents: write # git push するために必要
     steps:
       - uses: actions/checkout@v4
 
@@ -27,7 +26,7 @@ jobs:
       - name: Make changes (e.g., update LICENSE year)
         run: |
           current_year=$(date +"%Y")
-          echo "current_year=$current_year" >> $GITHUB_ENV
+          echo "current_year=$current_year" >> "$GITHUB_ENV"
           sed -i "s/[0-9]\{4\}/$current_year/g" LICENSE
 
       - name: Configure Git
@@ -38,7 +37,7 @@ jobs:
       - name: Create new branch
         run: |
           branch_name="update-license-year-$current_year"
-          echo "branch_name=$branch_name" >> $GITHUB_ENV
+          echo "branch_name=$branch_name" >> "$GITHUB_ENV"
           git checkout -b "$branch_name"
 
       - name: Commit changes
