@@ -26,7 +26,7 @@ jobs:
         id: read_python_version
         run: |
           PYTHON_VERSION=$(cat .python-version)
-          echo "PYTHON_VERSION=$PYTHON_VERSION" >> $GITHUB_ENV
+          echo "PYTHON_VERSION=$PYTHON_VERSION" >> "$GITHUB_ENV"
 
       - name: Set up Python
         uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6
@@ -37,3 +37,15 @@ jobs:
         uses: pre-commit/action@2c7b3805fd2a0fd8c1884dcaebf91fc102a13ecd # v3.0.1
         with:
           extra_args: -a --show-diff-on-failure
+
+  workflow-result:
+    needs: [pre-commit]
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions: {}
+    steps:
+      - name: Check workflow result
+        env:
+          RESULT: ${{ needs.pre-commit.result }}
+        run: test "$RESULT" = success
